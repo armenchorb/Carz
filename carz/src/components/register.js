@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 class Register extends Component {
     renderField(field){
-        <div>
-            <label>{field.label}</label>
-            <input
-                type="text"
-                {...field.input}
-            />
-        </div>
-
+        return(
+            <div>
+                <label>{field.label}</label>
+                <input
+                    type="text"
+                    {...field.input}
+                />
+            </div>
+        )
     }
     render(){
         return (
@@ -26,8 +27,18 @@ class Register extends Component {
                         component={this.renderField}
                     />
                     <Field 
-                        label="Post Content"
-                        name="content"
+                        label="Phone"
+                        name="phone"
+                        component={this.renderField}
+                    />
+                    <Field 
+                        label="Email"
+                        name="email"
+                        component={this.renderField}
+                    />
+                    <Field 
+                        label="Password"
+                        name="password"
                         component={this.renderField}
                     />
                 </form>
