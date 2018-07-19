@@ -42,7 +42,9 @@ class Register extends Component {
                         component={this.renderField}
                     />
                 </form>
+                <div> RANDOM DIV HERE </div>
             </div>
+
         )
     }
 }
