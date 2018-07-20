@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createUser } from '../actions'
+import { newUser } from '../../actions/actionTypes';
+
+
 class Register extends Component {
     renderField(field){
         return(
@@ -16,8 +18,8 @@ class Register extends Component {
         )
     }
     onSubmit(values){
-        // console.log(values)
-        this.props.createUser(values);
+        console.log('user inside register', values)
+        this.props.newUser(values);
     }
     render(){
         const { handleSubmit } = this.props;
@@ -26,12 +28,12 @@ class Register extends Component {
                 <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
                         label="First Name"
-                        name="firstName"
+                        name="first_name"
                         component={this.renderField}
                     />
                     <Field 
                         label="Last Name"
-                        name="lastName"
+                        name="last_name"
                         component={this.renderField}
                     />
                     <Field 
@@ -49,7 +51,12 @@ class Register extends Component {
                         name="password"
                         component={this.renderField}
                     />
-                    <button type="submit"> Submit </button>
+                    <Field 
+                        label="Confirm Password"
+                        name="confirm_password"
+                        component={this.renderField}
+                    />
+                    <button type="submit">Submit</button>
                 </form>
             </div>
 
@@ -73,9 +80,15 @@ function validate(values){
     }
     return errors;  
 }
+
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+
 export default reduxForm({
     validate,
     form:'RegisterForm'
  })(
-    connect(null,{ createUser })(Register)
+    connect(mapStateToProps, { newUser })(Register)
 );

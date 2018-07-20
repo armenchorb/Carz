@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Register from './components/Register/register';
-import AppNavbar from './components/AppNavbar/AppNavbar';
-import Carousel from './components/Carousel/Carousel';
-import Groups from './components/Groups/Groups';
+import { Provider } from 'react-redux';
+import store from './store';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import Home from './containers/Home';
@@ -15,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
   render() {
     return (
+      <Provider store={store}>
         <div className="App">
           <Switch>
             <Route path="/signup" exact component={SignUp}/>
@@ -22,6 +21,7 @@ class App extends Component {
             <Route path="/" component={Home}/>
           </Switch>
         </div>
+        </Provider>
     );
   }
 }

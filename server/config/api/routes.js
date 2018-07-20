@@ -29,8 +29,11 @@ router.post('/', (req,res) => {
         phone: req.body.phone,
         email: req.body.email,
         password: req.body.password
-    });
-    newUser.save().then(user => res.json(user));
+    })
+    console.log('new user created', newUser)
+    newUser.save().then(user => res.json(user))
+    .catch(err => console.log(err));
+    console.log('new user saved')
 });
 
 
